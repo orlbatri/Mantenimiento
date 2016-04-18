@@ -19,6 +19,7 @@ public final class FormaListadoRecomendaciones
 
     private Collection recomendaciones;
     private int contador;
+    private String nombre;
 
 
     public void setRecomendaciones(Collection recomendaciones) {
@@ -43,6 +44,12 @@ public final class FormaListadoRecomendaciones
                       HttpServletRequest request) {
         contador=0;
         recomendaciones =null;
+    }
+    public String getNombre(){
+        return (this.nombre);
+    }
+    public void setNombre(String nombre){
+        this.nombre=nombre;
     }
 
 

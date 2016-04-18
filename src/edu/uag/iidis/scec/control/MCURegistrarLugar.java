@@ -1,5 +1,7 @@
 package edu.uag.iidis.scec.control;
 
+import java.util.Collection;
+
 import edu.uag.iidis.scec.vista.*;
 import edu.uag.iidis.scec.modelo.*;
 import edu.uag.iidis.scec.servicios.*;
@@ -16,7 +18,9 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.actions.MappingDispatchAction;
-
+import java.io.*;
+import java.util.*;
+import org.apache.struts.upload.FormFile;
 
 
 public final class MCURegistrarLugar 
@@ -35,8 +39,29 @@ public final class MCURegistrarLugar
         if (log.isDebugEnabled()) {
             log.debug(">solicitarRegistroLugar");
         }
+		FormaNuevoLugar forma = (FormaNuevoLugar)form;
 
-        return (mapping.findForward("exito"));
+        ManejadorEstados mr = new ManejadorEstados();
+        Collection resultado = mr.listarEstados();
+
+        ActionMessages errores = new ActionMessages();
+        if (resultado != null) {
+            if ( resultado.isEmpty() ) {
+                errores.add(ActionMessages.GLOBAL_MESSAGE,
+                    new ActionMessage("errors.registroVacio"));
+                saveErrors(request, errores);
+            } else {
+                forma.setEstados(resultado);
+            }
+            return (mapping.findForward("exito"));
+        } else {
+            log.error("Ocurrió un error de infraestructura");
+            errores.add(ActionMessages.GLOBAL_MESSAGE,
+                        new ActionMessage("errors.infraestructura"));                
+            saveErrors(request, errores);
+            return ( mapping.findForward("fracaso") );
+        }
+		
     }
 
 
@@ -61,11 +86,29 @@ public final class MCURegistrarLugar
         }
 
         
-        // Se obtienen los datos para procesar el registro
+        String filePath = getServlet().getServletContext().getRealPath("/") +"upload";
+        log.debug("ruta: " + filePath);
+        File folder = new File(filePath);
+        if(!folder.exists()){
+            folder.mkdir();
+        }
         FormaNuevoLugar forma = (FormaNuevoLugar)form;
-
+        FormFile file = forma.getImagen();
+        String fileName = file.getFileName();
+        File newFile =  null;
+        if(!("").equals(fileName)){  
+            
+            newFile = new File(filePath, fileName);
+              
+            if(!newFile.exists()){
+              FileOutputStream fos = new FileOutputStream(newFile);
+              fos.write(file.getFileData());
+              fos.flush();
+              fos.close();
+            }
+        }
         Lugar lugar = new Lugar(forma.getNombre(),
-                          forma.getDescripcion(),forma.getPoblacion(),forma.getCoordenadas(),forma.getEstado());
+                          forma.getDescripcion(),forma.getPoblacion(),forma.getCoordenadas(),forma.getEstado(),"upload\\"+fileName,forma.getPais(),forma.getMoneda());
 
         ManejadorLugares mr = new ManejadorLugares();
         int resultado = mr.crearLugar(lugar);

@@ -38,6 +38,8 @@
          <td style="border-right-style:solid; border-left-style:solid; border-width:1px; border-color:#000000;"><b><fmt:message key="formaListadoLugares.etiqueta.poblacion" /></b></td>
          <td style="border-right-style:solid; border-left-style:solid; border-width:1px; border-color:#000000;"><b><fmt:message key="formaListadoLugares.etiqueta.coordenadas" /></b></td>
          <td style="border-right-style:solid; border-left-style:solid; border-width:1px; border-color:#000000;"><b><fmt:message key="formaListadoLugares.etiqueta.estado" /></b></td>
+         <td style="border-right-style:solid; border-left-style:solid; border-width:1px; border-color:#000000;"><b><fmt:message key="formaListadoLugares.etiqueta.pais" /></b></td>
+         <td style="border-right-style:solid; border-left-style:solid; border-width:1px; border-color:#000000;"><b><fmt:message key="formaListadoLugares.etiqueta.moneda" /></b></td>
          
 		 <td colspan="2"><b><fmt:message key="formaListadoLugares.etiqueta.administracion" /></b></td>
         </tr>
@@ -48,6 +50,9 @@
 				<td align="left" width="60%"><c:out value="${lugar.poblacion}"/></td>
 				<td align="left" width="60%"><c:out value="${lugar.coordenadas}"/></td>
 				<td align="left" width="60%"><c:out value="${lugar.estado}"/></td>
+        <td align="left" width="60%"><c:out value="${lugar.pais}"/></td>
+        <td align="left" width="60%"><c:out value="${lugar.moneda}"/></td>
+
                 <td align="left" width="20%">
                     <a href='solicitarModificarLugar.do?id=<c:out value="${lugar.id}"/>'
 					   class="HipervinculoAdmon">

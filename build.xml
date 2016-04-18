@@ -118,10 +118,10 @@
     <property name="dist.home"       value="${basedir}/dist"/>
     <property name="test.out.dir"    value="${basedir}/testout"/>
 
-    <property name="catalina.home"    value="C:\Program Files\apache-tomcat-7.0.67"/>
+    <property name="catalina.home"    value="C:\apache-tomcat-7.0.67"/>
     <property name="manager.url"      value="http://127.0.0.1:8080/manager/text"/>
-    <property name="manager.username" value="arcos"/>
-    <property name="manager.password" value="xxxx"/>
+    <property name="manager.username" value="root"/>
+    <property name="manager.password" value="root"/>
 
 
 
@@ -164,15 +164,9 @@
 location="${catalina.home}/lib/catalina-ant.jar" />
 -->
 <path id="tomcat.ant.classpath">
-	<!--<fileset dir="${catalina.home}/lib">
-		<include name="catalina-ant.jar"/>
-		<include name="tomcat-coyote.jar"/>
-		<include name="tomcat-util.jar"/>
-	</fileset>
-	<fileset dir="${catalina.home}/bin">
-		<include name="tomcat-juli.jar"/>
-	</fileset>-->
-</path>
+             <pathelement 
+location="${catalina.home}/lib/catalina-ant.jar" />
+         </path>
 
     <taskdef name="install" classname="org.apache.catalina.ant.DeployTask"
 		classpathref="tomcat.ant.classpath" />

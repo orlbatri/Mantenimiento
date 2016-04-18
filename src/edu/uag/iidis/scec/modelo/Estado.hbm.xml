@@ -15,11 +15,13 @@
         </id>
 
         <property name="nombre"
+			column="Nombre"
             type="java.lang.String"
             not-null="true"
             unique="true" />
 
         <property name="descripcion"
+			column="Descripcion"
             type="java.lang.String" />
 
     </class>

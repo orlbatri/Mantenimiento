@@ -22,7 +22,9 @@ public class Lugar extends ClaseBase
 	private Long poblacion;
 	private String coordenadas;
 	private String estado;
-
+    private String imagen;
+    private String pais;
+    private String moneda;
 
     public Lugar() {
     }
@@ -31,12 +33,15 @@ public class Lugar extends ClaseBase
         this.id = id;
     }
 
-    public Lugar(String nombre, String descripcion,Long poblacion,String coordenadas,String estado){
+    public Lugar(String nombre, String descripcion,Long poblacion,String coordenadas,String estado, String imagen, String pais, String moneda){
         this.nombre=nombre;
         this.descripcion=descripcion;
 		this.poblacion=poblacion;
 		this.coordenadas=coordenadas;
 		this.estado=estado;
+        this.imagen=imagen;
+        this.pais = pais;
+        this.moneda = moneda;
     }
 
     /**
@@ -75,7 +80,15 @@ public class Lugar extends ClaseBase
 	public String getEstado() {
         return this.estado;
     }
-
+     public String getImagen() {
+        return this.imagen;
+    }
+         public String getPais() {
+        return this.pais;
+    }
+         public String getMoneda() {
+        return this.moneda;
+    }
     /**
      * Establece el nombre del Lugar.
      * @return void
@@ -95,7 +108,15 @@ public class Lugar extends ClaseBase
 	public void setEstado(String estado) {
         this.estado = estado;
     }
-    
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
+    public void setMoneda(String moneda) {
+        this.moneda = moneda;
+    }
     /**
      * Regresa la descripción del Lugar.
      * @return String

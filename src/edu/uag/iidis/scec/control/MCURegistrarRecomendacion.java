@@ -84,13 +84,12 @@ public final class MCURegistrarRecomendacion
             return (mapping.findForward("cancelar"));
         }
 
-        Date date = new Date();
-        DateFormat hourdateFormat = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
+        
         // Se obtienen los datos para procesar el registro
         FormaNuevoRecomendacion forma = (FormaNuevoRecomendacion)form;
 
         Recomendacion recomendacion = new Recomendacion(forma.getNombre(),forma.getEstado(),
-                          "Default",hourdateFormat.format(date),forma.getComentario(),forma.getCalificacion());
+                          "Default",forma.getFecha(),forma.getComentario(),forma.getCalificacion());
 
         ManejadorRecomendaciones mr = new ManejadorRecomendaciones();
         int resultado = mr.crearRecomendacion(recomendacion);

@@ -35,7 +35,17 @@
 		<property name="estado"
 			column="Estado"
             type="java.lang.String"/>
-			
+             <!--cambios-->
+        <property name="imagen"
+        column="Imagen"
+        type="java.lang.String"/>
+
+        <property name="pais"
+        column="Pais"
+        type="java.lang.String"/>
+		<property name="moneda"
+        column="Moneda"
+        type="java.lang.String"/>	
     </class>
 
 </hibernate-mapping>
